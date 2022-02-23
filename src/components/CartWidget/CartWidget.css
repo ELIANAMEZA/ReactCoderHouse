@@ -1,0 +1,18 @@
+#cart{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+#icono{
+    width: 6vh;
+    height: 6vh;
+    padding: 2vh;
+    border-radius: 100%;
+  
+}
+img{
+    width: 100%;
+    
+}
