@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
      <NavBar />
-     <ItemListContainer saludo="esta es la página de carteras de cuero hechas a mano" />
+     <ItemListContainer />
     </div>
   );
 }
