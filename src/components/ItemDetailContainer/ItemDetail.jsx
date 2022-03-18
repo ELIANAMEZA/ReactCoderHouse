@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ItemCount } from '../ItemCount/ItemCount'
 
 export const ItemDetail = ({title, description, price, imgUrl, stock}) => {
+
+  const [option, setOption] = useState(true)
+
+  function onAdd(cantidad) {
+    setOption(false)
+  }
   return (
     <div className='item-detail'>
         <div className='portada'>
@@ -11,8 +19,15 @@ export const ItemDetail = ({title, description, price, imgUrl, stock}) => {
             <h1>{title}</h1>
             <h3>{description}</h3>
             <h2>${price}</h2>
-            <h3>{stock} </h3>
+
+            { option ?
+                  <ItemCount stock={stock} initial={1} onAdd={onAdd}/>: 
+                  <Link to={`/cart`}> <button>Finalizar compra</button> </Link>
+
+            }
+           
         </div>
+        
     </div>
   )
 }

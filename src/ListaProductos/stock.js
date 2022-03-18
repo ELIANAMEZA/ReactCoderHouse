@@ -11,7 +11,7 @@ export const stock = [
     {
         id: 2,
         title: "Atenea",
-        description: "cartera para usar de un costado",
+        description: "cartera para usar de costado",
         price: 4000,
         imgUrl: "https://i.ibb.co/59mH9H8/atenea.jpg",
         stock: 5,

@@ -3,14 +3,12 @@
     display: flex;
     flex-direction: row;
     justify-content: end;
-    background-color: grey;
-     
+    background-color: grey;  
 }
 #nav{
     width: 80%;
     display: flex;
-    align-items: flex-end; 
-    
+    align-items: flex-end;     
 }
 ul{
     display: flex;
@@ -23,8 +21,7 @@ ul{
     padding: 1vw 4vh;
     text-decoration: none;
     color: black;
-    list-style: none;
-    
+    list-style: none;  
 }
 .productos{
     color: black;
@@ -52,15 +49,12 @@ ul li ul.sub-menu:hover{
     border-bottom: 2px;
     
 }
-
 .sub-menu{
     color: black;
     text-decoration: none;
     width: 100%;
-    padding: 1vh;
-    
+    padding: 1vh;   
 }
-
 #marca{
     width: 10%;   
 }
