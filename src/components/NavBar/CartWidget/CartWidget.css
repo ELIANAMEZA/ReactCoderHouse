@@ -17,3 +17,10 @@
     width: 150%;  
     
 }
+.total{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end ;
+    text-decoration-line: none;
+    text-decoration-color: black;
+}
