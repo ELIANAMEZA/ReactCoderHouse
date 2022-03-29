@@ -6,6 +6,7 @@ import { stock } from '../../ListaProductos/stock'
 import { getStock } from '../../helpers/getStock'
 import { ItemList } from './ItemList'
 import './ItemListContainer.css'
+import {collection, getDocs, getFirestore, query, where} from 'firebase/firestore'
 
 export const ItemListContainer = () => {
 
@@ -13,8 +14,18 @@ export const ItemListContainer = () => {
     const [loading, setLoading] = useState(false)
     const {categoryId} = useParams()
  
-
     useEffect(() => {
+        const db = getFirestore();
+        const queryCollection = collection(db, 'items')
+        const queryFilter = query(queryCollection, where('stock', '>=', 0))
+        getDocs(queryFilter)
+        .then(resp => setItems(resp.docs.map(item=>({id: item.id, ...item.data()}))))
+        .catch(err => console.log(err))
+        .finally(()=> setLoading(false))
+
+    }, [])
+
+   /*  useEffect(() => {
         setLoading(true) 
         getStock(stock) 
         .then((res) =>{
@@ -27,7 +38,7 @@ export const ItemListContainer = () => {
         .finally(()=>{
             setLoading(false)
         })
-    }, [categoryId])
+    }, [categoryId]) */
 
   return (
     <div className='item-list-container'>

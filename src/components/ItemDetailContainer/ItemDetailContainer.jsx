@@ -4,6 +4,7 @@ import { stock } from '../../ListaProductos/stock'
 import { ItemDetail } from './ItemDetail'
 import { getStock } from '../../helpers/getStock'
 import './ItemDetailContainer.css'
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 export const ItemDetailContainer = () => {
 
@@ -11,17 +12,17 @@ export const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(false)
     const {itemId} = useParams()
 
-    useEffect(() => {
+    useEffect(()=>{
         setLoading(true)
-        getStock(stock) 
-            .then((res) =>{
-                setItem(res.find( (item)=> item.id === parseInt(itemId))) 
-            })
-            .catch((err)=>console.log(err)) 
-            .finally(()=>{
-                setLoading(false)
-            })
+        const db = getFirestore();
+        const queryDb = doc(db, 'items', itemId);
+        getDoc(queryDb)
+            .then(resp=> setItem({id: resp.id, ...resp.data()}))
+            .catch(err => console.log(err))
+            .finally(()=> setLoading(false))
     }, [itemId])
+
+  
     
   return (
     <div className='item-detail-container'>
@@ -35,3 +36,14 @@ export const ItemDetailContainer = () => {
   )
 }
 
+/* useEffect(() => {
+    setLoading(true)
+    getStock(stock) 
+        .then((res) =>{
+            setItem(res.find( (item)=> item.id === parseInt(itemId))) 
+        })
+        .catch((err)=>console.log(err)) 
+        .finally(()=>{
+            setLoading(false)
+        })
+}, [itemId]) */
