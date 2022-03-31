@@ -1,7 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../../context/cartContext';
 import { Link } from 'react-router-dom'
 import './Cart.css'
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  // query,
+  // documentId,
+  // where,
+  // getDocs,
+  // writeBatch,
+} from "firebase/firestore";
+
 
 
 export const Cart = () => {
