@@ -13,14 +13,11 @@ export const CartWidget = () => {
                 <img src={cartIcon} id='icono' />
             :
             <div>
-                <img src={cartIcon} className='carrito' />
-                <span> {total}</span>
+                <img src={cartIcon} className='carrito' /><span> {total}</span>
+                
             </div>
             }
-        </Link>
-
-
-        
+        </Link>   
     )
 }
 

@@ -79,16 +79,18 @@ export const Cart = () => {
                     </div>
                     <div className='portada-detail'>
                       <h4>{product.title}</h4>
-                      <h4>precio: {product.price}</h4>
+                      <h4>precio:$ {product.price}</h4>
                       <h4>cantidad:{product.cantidad}</h4>
                       <button onClick={() => removeItem(product.id)}> X </button>
                     </div>
-                  {id.length !== '' && `el id de la compra es: ${id}`}
+                  
                 </div>)
               }
 
               <div>
                 <button>Total: ${totalCompra()} </button>
+                <p>{id.length > 0 && `el id de la compra es: ${id}`}</p>
+                
                 <div>
                   <Link to={'/'} >
                       <button>Seguir comprando</button>
