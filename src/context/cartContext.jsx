@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext([])
 
@@ -57,6 +57,7 @@ export const CartProvider = ({children})=>{
            removeItem,
            totalCompra,
            totalCantidad
+           
         }}>
             {children}
         </CartContext.Provider>

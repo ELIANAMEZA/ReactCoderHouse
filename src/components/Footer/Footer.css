@@ -1,0 +1,10 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.fb{
+    width: 5vh;
+    height: 5vh;
+}

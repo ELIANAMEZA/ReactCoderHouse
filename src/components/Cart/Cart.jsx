@@ -15,6 +15,7 @@ import {
   // writeBatch 
 } from "firebase/firestore";
 
+
 export const Cart = () => {
   const [id, setId] = useState("")
   const handleChange = (e) => {
@@ -31,12 +32,19 @@ export const Cart = () => {
   })
 
   const {cart, vaciarCarrito, removeItem, totalCompra} = useContext(CartContext)
+  console.log(cart)
 
-  const generarOrden = async () => {
+  const generarOrden = async (e) => {
+    e.preventDefault();
+    const date = ()=>{
+      let fecha = new Date();
+      return fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear();
+  }
+
     let orden = {}
+    orden.date= date()
     orden.buyer = dataForm
     orden.total = totalCompra()
-    orden.fecha = new Date()
     orden.items = cart.map((cartItem) => {
       const id = cartItem.id
       const nombre = cartItem.title
@@ -53,11 +61,11 @@ export const Cart = () => {
       .catch((err) => console.error(err))
       .finally(() => console.log("terminado"))
     
+    
+    
   }
 
-  console.log(cart)
-
- 
+console.log(dataForm)
 
   return(
    
@@ -89,17 +97,41 @@ export const Cart = () => {
 
               <div>
                 <button>Total: ${totalCompra()} </button>
-                <p>{id.length > 0 && `el id de la compra es: ${id}`}</p>
+                <form onSubmit={generarOrden}>
+                  <input 
+                      type='text' 
+                      name='name' 
+                      placeholder='name' 
+                      value={dataForm.name}
+                      onChange={handleChange}
+                  /><br />
+                  <input 
+                      type='text' 
+                      name='phone'
+                      placeholder='tel' 
+                      value={dataForm.phone}
+                      onChange={handleChange}
+                  /><br/>
+                  <input 
+                      type='email' 
+                      name='email'
+                      placeholder='email' 
+                      value={dataForm.email}
+                      onChange={handleChange}
+                  /><br/>
+                  <button>Enviar</button>
+                  </form>
+                  <div>
+                    <p>{id.length > 0 && `el id de la compra es: ${id}`}</p>
+                    
+                  </div> 
                 
                 <div>
                   <Link to={'/'} >
                       <button>Seguir comprando</button>
                   </Link>
                   <button onClick={vaciarCarrito}>VaciarCarrito</button>
-                  <button onClick={generarOrden}>Finalizar compra</button>
-                  
-
-                  
+        
                 </div>  
               </div>
             </>  
@@ -111,3 +143,6 @@ export const Cart = () => {
   )
 
 }
+
+
+

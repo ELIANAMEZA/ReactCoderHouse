@@ -5,7 +5,9 @@ import { NavBar } from './components/NavBar/NavBar.jsx';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
 import { Cart } from './components/Cart/Cart';
-import { CartProvider } from './context/cartContext'
+import { CartProvider } from './context/cartContext';
+import { Footer } from './components/Footer/Footer'
+
 
 
 function App() {
@@ -22,6 +24,9 @@ function App() {
               <Route path='/cart' element={<Cart />} />
               <Route path='/*' element={<Navigate to='/' replace />} />
             </Routes>
+          </div>
+          <div>
+          <Footer />
           </div>
         </BrowserRouter></>
     </CartProvider>
