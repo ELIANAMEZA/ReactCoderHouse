@@ -62,10 +62,11 @@ export const Cart = () => {
       .finally(() => console.log("terminado"))
     
     
-    
+    vaciarCarrito()
   }
 
 console.log(dataForm)
+
 
   return(
    
