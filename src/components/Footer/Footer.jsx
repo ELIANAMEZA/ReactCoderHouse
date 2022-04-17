@@ -1,18 +1,20 @@
 import React from "react";
 import fb from '../../img/iconos/fb.png';
 import './Footer.css'
-import { Link } from 'react-router-dom'
+import ig from '../../img/iconos/ig.png'
 
 
 const Footer = () => {
     return(
-        <><div className="footer">
+        <div className="footer">
+        
             <h4>Seguinos en las redes</h4>
-        </div>
+        
         <div>
-            <img src={fb} alt="" className="fb"/><a href="https://m.facebook.com/Ilay-Bags-107273540616827/"></a>
-        </div></>
-
+            <a href="https://m.facebook.com/Ilay-Bags-107273540616827/" target='_blank'><img src={fb} alt="facebook" className="fb"/></a>
+            <a href="https://www.instagram.com/ilaybags/" target='_blank'><img src={ig} alt="instagram" className="ig"/></a>
+        </div>
+        </div>
     )
 }
 

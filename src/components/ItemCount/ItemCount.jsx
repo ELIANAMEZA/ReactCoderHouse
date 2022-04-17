@@ -1,65 +1,38 @@
 import React, { useState } from 'react'
+import './ItemCount.css'
 
 export const ItemCount = ({stock, initial, onAdd}) => {
 
     const [count, setCount] = useState(initial) 
  
-    const handleRestar = () => {
+    const handleSubstract = () => {
         if(count > 0){
             setCount(count-1) 
         } 
     }
-    const handleSumar = () => {
+    const handleAdd = () => {
         if(count < stock){
             setCount(count+1) 
         } 
     }
     
-    const agregar = () =>{
+    const addition = () =>{
         onAdd(count)
     }
 
     return (
         <div>
-            <button  disabled={count===0}  onClick={handleRestar} className="btn btn-secondary">
+            <button  disabled={count===0} onClick={handleSubstract} className="button-count">
                 -
             </button>
-            <span className="mx-3">{count}</span>
-            <button  disabled={count===stock} onClick={handleSumar} className="btn btn-secondary">
+            <span><b>{count}</b></span>
+            <button  disabled={count===stock} onClick={handleAdd} className="button-count">
                 +
             </button><br />
-            <button  disabled={count===0} onClick={agregar} className="btn btn-primary mx-2">
-                Agregar al carrito
+            <button  disabled={count===0} onClick={addition} className="button-count">
+               <b>Agregar al carrito</b> 
             </button>
         </div>
     )
-
-    // const [cantidad, setCantidad] = useState(initial) 
- 
-    // const handleRestar = () => {
-    //     if(cantidad > 0){
-    //         setCantidad(cantidad-1) 
-    //     } 
-    // }
-    // const handleSumar = () => {
-    //     if(cantidad < stock){
-    //         setCantidad(cantidad+1) 
-    //     } 
-    // }
     
-
-    // return (
-    //     <div>
-    //         <button disabled={cantidad===0} onClick={handleRestar} className="btn btn-secondary">
-    //             -
-    //         </button>
-    //         <span className="mx-3">{cantidad}</span>
-    //         <button disabled={cantidad===stock} onClick={handleSumar} className="btn btn-secondary">
-    //             +
-    //         </button><br />
-    //         <button disabled={cantidad===0} onClick={ () => onAdd(cantidad) } className="btn btn-primary mx-2">
-    //             Agregar al carrito
-    //         </button>
-    //     </div>
-    // )
 }

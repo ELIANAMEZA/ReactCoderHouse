@@ -2,22 +2,14 @@ import React, { useContext, useState } from 'react';
 import { CartContext } from '../../context/cartContext';
 import { Link } from 'react-router-dom'
 import './Cart.css'
-import {
-  addDoc, 
-  collection, 
-  // doc, 
-  // documentId, 
-  // getDocs, 
-  getFirestore, 
-  // query, 
-  // updateDoc, 
-  // where, 
-  // writeBatch 
-} from "firebase/firestore";
+import {addDoc,collection,getFirestore,} from "firebase/firestore";
 
 
 export const Cart = () => {
   const [id, setId] = useState("")
+  const [dataForm, setDataForm] = useState({
+    email: "",name: "",phone: "",
+  })
   const handleChange = (e) => {
     setDataForm({
       ...dataForm,
@@ -25,27 +17,20 @@ export const Cart = () => {
     })
   }
 
-  const [dataForm, setDataForm] = useState({
-    email: "",
-    name: "",
-    phone: "",
-  })
+  const {cart, emptyCart, removeItem, totalBuy} = useContext(CartContext)
 
-  const {cart, vaciarCarrito, removeItem, totalCompra} = useContext(CartContext)
-  console.log(cart)
-
-  const generarOrden = async (e) => {
+  const generateOrder = async (e) => {
     e.preventDefault();
     const date = ()=>{
       let fecha = new Date();
       return fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear();
   }
 
-    let orden = {}
-    orden.date= date()
-    orden.buyer = dataForm
-    orden.total = totalCompra()
-    orden.items = cart.map((cartItem) => {
+    let order = {}
+    order.date= date()
+    order.buyer = dataForm
+    order.total = totalBuy()
+    order.items = cart.map((cartItem) => {
       const id = cartItem.id
       const nombre = cartItem.title
       const precio = cartItem.price * cartItem.cantidad
@@ -53,31 +38,30 @@ export const Cart = () => {
       return { id, nombre, precio}
     })
 
-    console.log(orden)
+   console.log(order)
 
     const db = getFirestore()
     const queryColection = collection(db, 'orders')
-    addDoc(queryColection, orden).then((resp) => setId(resp.id))
+    addDoc(queryColection, order).then((resp) => setId(resp.id))
       .catch((err) => console.error(err))
-      .finally(() => console.log("terminado"))
-    
-    
-    vaciarCarrito()
+      .finally(() =>emptyCart())
+      
+   console.log(dataForm)
+
   }
-
-console.log(dataForm)
-
 
   return(
    
     <div className='div-return'> 
-  
+      {id.length > 0 && `El id de la compra es: ${id}`}
       {cart.length === 0 ? 
             <>
+            <div className="cart-vacio">
                 <h2>Tu carrito está vacío</h2>
-                <Link to='/' className="">
-                    <button className="">Comenzá a comprar</button>
+                <Link to='/' >
+                    <button className="button-comprar"><b>Comenzá a comprar</b> </button>
                 </Link>
+            </div>
             </>
             :
             <>
@@ -90,28 +74,37 @@ console.log(dataForm)
                       <h4>{product.title}</h4>
                       <h4>precio:$ {product.price}</h4>
                       <h4>cantidad:{product.cantidad}</h4>
-                      <button onClick={() => removeItem(product.id)}> X </button>
-                    </div>
-                  
+                      <button id='remove' onClick={() => removeItem(product.id)}> X </button>
+                    </div>                 
                 </div>)
               }
-
               <div>
-                <button>Total: ${totalCompra()} </button>
-                <form onSubmit={generarOrden}>
+                <div id='total-cart'>
+                  <Link to={'/'} >
+                  <button className='button-cart'><b>Seguir comprando</b> </button>
+                </Link>
+                <button className='button-cart' onClick={emptyCart}><b> VaciarCarrito</b></button>
+                <h2>Total: ${totalBuy()}</h2>
+                
+                </div>
+                
+                <h3>Completá el formulario para finalizar la compra</h3>
+                <form onSubmit={generateOrder}>
                   <input 
                       type='text' 
                       name='name' 
-                      placeholder='name' 
+                      placeholder='Nombre y Apellido' 
                       value={dataForm.name}
                       onChange={handleChange}
+                      required
                   /><br />
                   <input 
-                      type='text' 
+                      type='number' 
                       name='phone'
-                      placeholder='tel' 
+                      placeholder='Celular' 
                       value={dataForm.phone}
                       onChange={handleChange}
+                      required
                   /><br/>
                   <input 
                       type='email' 
@@ -119,21 +112,12 @@ console.log(dataForm)
                       placeholder='email' 
                       value={dataForm.email}
                       onChange={handleChange}
+                      required
                   /><br/>
-                  <button>Enviar</button>
+                  <br />
+                  <button id='button-form'><b> Enviar</b></button>  
                   </form>
-                  <div>
-                    <p>{id.length > 0 && `el id de la compra es: ${id}`}</p>
-                    
-                  </div> 
-                
-                <div>
-                  <Link to={'/'} >
-                      <button>Seguir comprando</button>
-                  </Link>
-                  <button onClick={vaciarCarrito}>VaciarCarrito</button>
-        
-                </div>  
+ 
               </div>
             </>  
         }

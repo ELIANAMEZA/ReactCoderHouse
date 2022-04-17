@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { stock } from '../../ListaProductos/stock'
 import { ItemDetail } from './ItemDetail'
-import { getStock } from '../../helpers/getStock'
 import './ItemDetailContainer.css'
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
@@ -21,8 +19,6 @@ export const ItemDetailContainer = () => {
             .catch(err => console.log(err))
             .finally(()=> setLoading(false))
     }, [itemId])
-
-  
     
   return (
     <div className='item-detail-container'>
@@ -36,14 +32,3 @@ export const ItemDetailContainer = () => {
   )
 }
 
-/* useEffect(() => {
-    setLoading(true)
-    getStock(stock) 
-        .then((res) =>{
-            setItem(res.find( (item)=> item.id === parseInt(itemId))) 
-        })
-        .catch((err)=>console.log(err)) 
-        .finally(()=>{
-            setLoading(false)
-        })
-}, [itemId]) */

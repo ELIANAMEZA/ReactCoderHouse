@@ -62,3 +62,6 @@ ul li ul.sub-menu:hover{
     width: 7vw;
     padding: 1vh 3vh;
 }
+.cart{
+    width: 20%;
+}

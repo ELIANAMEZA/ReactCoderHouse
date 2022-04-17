@@ -5,12 +5,14 @@
     flex-direction: row;
     justify-content: center;
     margin-top: 5px;
+    padding-bottom: 7rem;   
 }
-
-.img-cart{
+.cart-vacio{
     
-    max-width: 150px;
-   
+    min-height: 100vh;
+}
+.img-cart{ 
+    max-width: 150px;   
 }
 .portada-detail{
     display: flex;
@@ -19,5 +21,24 @@
     align-items: center;
     font-size: small;
     margin-left: 2px;
+}
+.button-cart{
+    width: 20%;
+    height: 40px;
+    border-radius: 0.2rem;
+}
 
+#button-form{
+    width: 10%;
+    height: 30px;
+    border-radius: 0.2rem;
+}
+#remove{
+    border-radius: 0.5rem;
+}
+.button-comprar{
+    width: 50%;
+    height: 50%;
+    border-radius: 0.5rem;
+    
 }

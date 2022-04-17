@@ -13,7 +13,6 @@ import { Footer } from './components/Footer/Footer'
 function App() {
   return (
     <CartProvider>
-
         <><BrowserRouter>
           <div className="App">
             <NavBar />
@@ -24,9 +23,7 @@ function App() {
               <Route path='/cart' element={<Cart />} />
               <Route path='/*' element={<Navigate to='/' replace />} />
             </Routes>
-          </div>
-          <div>
-          <Footer />
+            <Footer />
           </div>
         </BrowserRouter></>
     </CartProvider>

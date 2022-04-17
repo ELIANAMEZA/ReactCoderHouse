@@ -19,31 +19,31 @@ export const CartProvider = ({children})=>{
         else {
             setCart( [...cart, product]) 
         }
-         totalCantidad()       
+        totalAmount()       
     }
     
     const removeItem = (id) => {
         setCart(cart.filter(product => product.id !== id));
     }
 
-    const vaciarCarrito = () => {
+    const emptyCart = () => {
         setCart([])
     }
 
-    const totalCompra = () => {
-        let totalCompra = 0;
-        cart.forEach(product => totalCompra += product.price * product.cantidad)
-        return totalCompra
+    const totalBuy = () => {
+        let totalBuy = 0;
+        cart.forEach(product => totalBuy += product.price * product.cantidad)
+        return totalBuy
     }
 
-    const totalCantidad = () => {
-        let totalCantidad = 0;
-        cart.forEach(product => totalCantidad += product.cantidad)
-        setTotal(totalCantidad) 
+    const totalAmount = () => {
+        let totalAmount = 0;
+        cart.forEach(product => totalAmount += product.cantidad)
+        setTotal(totalAmount) 
 
     }
     useEffect(()=>{
-        totalCantidad()
+        totalAmount()
     }, [cart])
     
 
@@ -52,12 +52,11 @@ export const CartProvider = ({children})=>{
            cart,
            total,
            AddToCart,
-           vaciarCarrito,
+           emptyCart,
            IsInCart,
            removeItem,
-           totalCompra,
-           totalCantidad
-           
+           totalBuy,
+           totalAmount           
         }}>
             {children}
         </CartContext.Provider>
