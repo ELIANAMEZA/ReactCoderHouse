@@ -5,7 +5,7 @@ Es un proyecto de ecommerce de un emprendimiento de carteras de cuero realizadas
 
 ## Update gif
 
-![image](https://github.com/ELIANAMEZA/ReactCoderHouse/blob/main/src/media/eccomercemeza.gif)
+![image](https://github.com/ELIANAMEZA/ReactCoderHouse/blob/main/src/media/ilayBags.gif)
 
 
 ### `npm install react-router-dom`
